@@ -95,14 +95,24 @@
 const myForm = document.querySelector('#my-form');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
+const phoneInput = document.querySelector('#Phonenum');
 myForm.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
     e.preventDefault();
     let myobject={
-      name: nameInput.value,
-      email:emailInput.value
+      name:nameInput.value,
+      email:emailInput.value,
+      phoneno:phoneInput.value
     };
     let myobject_serialized=JSON.stringify(myobject);
-    localStorage.setItem("myobject",myobject_serialized);
+    localStorage.setItem(emailInput.value,myobject_serialized);
+    showUserdetailsOnScreen()
 }
+
+function showUserdetailsOnScreen(){
+          const parentEle=document.querySelector('.items')
+          const childEle=document.createElement('li')
+          childEle.textContent='\u2022 '+nameInput.value + '-' + emailInput.value + '-' + phoneInput.value
+          parentEle.appendChild(childEle)
+        }
