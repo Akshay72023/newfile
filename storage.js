@@ -115,4 +115,17 @@ function showUserdetailsOnScreen(){
           const childEle=document.createElement('li')
           childEle.textContent='\u2022 '+nameInput.value + '-' + emailInput.value + '-' + phoneInput.value
           parentEle.appendChild(childEle)
+
+          const deleteButton=document.createElement('input')
+          deleteButton.type='button'
+          deleteButton.value='Delete'
+          childEle.appendChild(deleteButton)
+          deleteButton.onclick = () =>{
+              localStorage.removeItem(emailInput.value)
+              parentEle.removeChild(childEle)
+          }
+          
+          
         }
+
+
