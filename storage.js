@@ -78,7 +78,20 @@
 //         emailInput.value = '';
 //       }
 //     }
+ 
 
+//Storing in localstorage
+// const myForm = document.querySelector('#my-form');
+// const nameInput = document.querySelector('#name');
+// const emailInput = document.querySelector('#email');
+// myForm.addEventListener('submit', onSubmit);
+
+// function onSubmit(e) {
+//     e.preventDefault();
+//     localStorage.setItem(nameInput.value,emailInput.value);
+// }
+
+//Storing in localstorage as object
 const myForm = document.querySelector('#my-form');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
@@ -86,5 +99,10 @@ myForm.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
     e.preventDefault();
-    localStorage.setItem(nameInput.value,emailInput.value);
+    let myobject={
+      name: nameInput.value,
+      email:emailInput.value
+    };
+    let myobject_serialized=JSON.stringify(myobject);
+    localStorage.setItem("myobject",myobject_serialized);
 }
