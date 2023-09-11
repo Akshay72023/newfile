@@ -93,9 +93,9 @@
 
 //Storing in localstorage as object
 const myForm = document.querySelector('#my-form');
-const nameInput = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const phoneInput = document.querySelector('#Phonenum');
+let nameInput = document.querySelector('#name');
+let emailInput = document.querySelector('#email');
+let phoneInput = document.querySelector('#Phonenum');
 myForm.addEventListener('submit', onSubmit);
 
 function onSubmit(e) {
@@ -123,7 +123,20 @@ function showUserdetailsOnScreen(){
           deleteButton.onclick = () =>{
               localStorage.removeItem(emailInput.value)
               parentEle.removeChild(childEle)
+            }
+
+          const editButton=document.createElement('input')
+          editButton.type='button'
+          editButton.value='Edit'
+          childEle.appendChild(editButton)
+          editButton.onclick = () =>{
+            localStorage.removeItem(emailInput.value)
+            parentEle.removeChild(childEle)
+            document.querySelector('#name').value=nameInput.value
+            document.querySelector('#email').value=emailInput.value
+            document.querySelector('#Phonenum').value=phoneInput.value
           }
+          
           
           
         }
