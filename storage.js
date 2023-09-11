@@ -92,53 +92,47 @@
 // }
 
 //Storing in localstorage as object
-const myForm = document.querySelector('#my-form');
-let nameInput = document.querySelector('#name');
-let emailInput = document.querySelector('#email');
-let phoneInput = document.querySelector('#Phonenum');
-myForm.addEventListener('submit', onSubmit);
-
 function onSubmit(e) {
     e.preventDefault();
+    const username=e.target.username.value;
+    const email=e.target.email.value;
+    const phone=e.target.phonenum.value;
     let myobject={
-      name:nameInput.value,
-      email:emailInput.value,
-      phoneno:phoneInput.value
+      username,
+      email,
+      phone
     };
     let myobject_serialized=JSON.stringify(myobject);
-    localStorage.setItem(emailInput.value,myobject_serialized);
-    showUserdetailsOnScreen()
+    localStorage.setItem(myobject.email,myobject_serialized);
+
+    //Displaying the userdetails
+    const parentEle=document.querySelector('.items');
+    const childEle=document.createElement('li');
+    childEle.textContent='\u2022 '+ myobject.username + '-' + myobject.email + '-' +myobject.phone;
+    parentEle.appendChild(childEle);
+
+    //Adding delete button and delteting from local storage
+    const deleteButton=document.createElement('input')
+              deleteButton.type='button'
+              deleteButton.value='Delete'
+              childEle.appendChild(deleteButton)
+              deleteButton.onclick = () =>{
+                  localStorage.removeItem(myobject.email)
+                  parentEle.removeChild(childEle)
+                }
+    //Adding edit button and deleting from local storage and 
+    const editButton=document.createElement('input')
+              editButton.type='button'
+              editButton.value='Edit'
+              childEle.appendChild(editButton)
+              editButton.onclick = () =>{
+                  localStorage.removeItem(myobject.email)
+                  parentEle.removeChild(childEle)
+                  document.querySelector('#name').value=myobject.username
+                  document.querySelector('#email').value=myobject.email
+                  document.querySelector('#Phonenum').value=myobject.phone
+                          }
 }
 
-function showUserdetailsOnScreen(){
-          const parentEle=document.querySelector('.items')
-          const childEle=document.createElement('li')
-          childEle.textContent='\u2022 '+nameInput.value + '-' + emailInput.value + '-' + phoneInput.value
-          parentEle.appendChild(childEle)
-
-          const deleteButton=document.createElement('input')
-          deleteButton.type='button'
-          deleteButton.value='Delete'
-          childEle.appendChild(deleteButton)
-          deleteButton.onclick = () =>{
-              localStorage.removeItem(emailInput.value)
-              parentEle.removeChild(childEle)
-            }
-
-          const editButton=document.createElement('input')
-          editButton.type='button'
-          editButton.value='Edit'
-          childEle.appendChild(editButton)
-          editButton.onclick = () =>{
-            localStorage.removeItem(emailInput.value)
-            parentEle.removeChild(childEle)
-            document.querySelector('#name').value=nameInput.value
-            document.querySelector('#email').value=emailInput.value
-            document.querySelector('#Phonenum').value=phoneInput.value
-          }
-          
-          
-          
-        }
 
 
