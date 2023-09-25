@@ -92,6 +92,8 @@
 // }
 
 //Storing in localstorage as object
+const myForm = document.querySelector('#my-form');
+myForm.addEventListener('submit', onSubmit);
 function onSubmit(e) {
     e.preventDefault();
     const username=e.target.username.value;
@@ -131,7 +133,7 @@ function onSubmit(e) {
                   document.querySelector('#name').value=myobject.username
                   document.querySelector('#email').value=myobject.email
                   document.querySelector('#Phonenum').value=myobject.phone
-                          }
+                  }
 }
 
 

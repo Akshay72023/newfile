@@ -63,4 +63,24 @@
 // console.log(titles);
 // titles[0].textContent='hi';
 
-titles[1].textContent='Item2';
+// titles[1].textContent='Item2';
+
+
+
+
+var x= function(name){
+    this.name=name;
+    setTimeout(function(){
+        console.log(this.name);
+    },1000)
+};
+var a=new x('yash');
+    
+// var student = function(name){
+//     this.name = name;
+//     function printName() {
+//       console.log(this.name)
+//     }
+//      printName()
+//   }
+// var yash = new student("yash")
