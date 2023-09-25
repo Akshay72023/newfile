@@ -68,13 +68,13 @@
 
 
 
-var x= function(name){
-    this.name=name;
-    setTimeout(function(){
-        console.log(this.name);
-    },1000)
-};
-var a=new x('yash');
+// var x= function(name){
+//     this.name=name;
+//     setTimeout(function(){
+//         console.log(this.name);
+//     },1000)
+// };
+// var a=new x('yash');
     
 // var student = function(name){
 //     this.name = name;

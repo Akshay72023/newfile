@@ -122,7 +122,7 @@ function onSubmit(e) {
                   localStorage.removeItem(myobject.email)
                   parentEle.removeChild(childEle)
                 }
-    //Adding edit button and deleting from local storage and 
+    //Adding edit button and deleting from local storage
     const editButton=document.createElement('input')
               editButton.type='button'
               editButton.value='Edit'
