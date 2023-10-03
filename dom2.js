@@ -1,5 +1,5 @@
 //Traversing the DOM
-var itemlist= document.querySelector('#items');
+//var itemlist= document.querySelector('#items');
 // console.log(itemlist.parentNode);
 // itemlist.parentNode.style.backgroundColor='#f4f4f4';
 // console.log(itemlist.parentNode.parentNode);
@@ -37,27 +37,41 @@ var itemlist= document.querySelector('#items');
 // itemlist.previousElementSibling.style.backgroundColor='red';
 
 //createElement
-var newDiv=document.createElement('div');
+//var newDiv=document.createElement('div');
 
 //Add class
-newDiv.className='hello';
+//newDiv.className='hello';
 
 //Add id
-newDiv.id='hello 1';
+//newDiv.id='hello 1';
 
 //Add attribute
-newDiv.setAttribute('title','hellodiv');
+//newDiv.setAttribute('title','hellodiv');
 
 
 //Add new node
-var newDivText= document.createTextNode('hello world');
+//var newDivText= document.createTextNode('hello world');
 
 //Append child
-newDiv.appendChild(newDivText);
+// newDiv.appendChild(newDivText);
 
 
-var container=document.querySelector('header.container');
-var h1=document.querySelector('head h1');
+// var container=document.querySelector('header.container');
+// var h1=document.querySelector('head h1');
 
-console.log(newDiv);
-container.insertBefore(newDiv,h1);
+// console.log(newDiv);
+// container.insertBefore(newDiv,h1);
+
+
+function outerfunction() {
+    var a = 25;
+    console.log(a);
+    return function innerfunction() {
+    console.log(a);
+    return 0;
+    }
+    
+    }
+var a = 5;
+var b =6
+console.log(outerfunction()());
