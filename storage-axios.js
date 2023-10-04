@@ -19,10 +19,35 @@ function onSubmit(e) {
       parentEle.appendChild(childEle);
     })
     .catch(err=>{
+      document.body.innerHTML=document.body.innerHTML + "<h4 style='text-align: center;'> Something went wrong </h4>"
       console.log(err);
     })
   }
-  
+
+window.addEventListener("DOMContentLoaded",()=>{
+        axios.get("https://crudcrud.com/api/5c8c473be6ec462ab320e6c8d4f798c6/appointmentdata")
+              .then((response)=>{
+                    console.log(response);
+                    for(var i=0;i<response.data.length;i++){
+                      const parentEle=document.querySelector('.items');
+                      const childEle=document.createElement('li');
+                      childEle.textContent='\u2022 '+ response.data[i].username + '-' + response.data[i].email + '-' +response.data[i].phone;
+                      parentEle.appendChild(childEle);
+                    }
+              })
+              .catch((err)=>{
+                console.log(err);
+              })
+})
+
+
+
+
+
+
+
+
+
 
 //     //Adding delete button and delteting from local storage
 //     const deleteButton=document.createElement('input')
