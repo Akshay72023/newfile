@@ -38,7 +38,7 @@ function showUserDetails(user){
     const parentEle=document.querySelector('.items');
     const childEle=`<li id=${user._id}> ${user.username}-${user.email}-${user.phone}
     <button onclick=deleteUser('${user._id}')>Delete</button>
-    <button onclick=deleteUser('${user._id}')>Edit</button></li>`
+    <button onclick=editUser('${user.username}','${user.email}','${user.phone}','${user._id}')>Edit</button></li>`
     parentEle.innerHTML= parentEle.innerHTML+childEle;
 }
 
@@ -59,22 +59,12 @@ function removeUserFromScreen(userid){
     }
 }
 
+//Edit user details
+function editUser(name,email,phoneno,userid){
+  document.getElementById('name').value=name;
+  document.getElementById('email').value=email;
+  document.getElementById('Phonenum').value=phoneno;
+  deleteUser(userid);
+}
 
 
-
-
-
-
-//     //Adding edit button and deleting from local storage
-//     const editButton=document.createElement('input')
-//               editButton.type='button'
-//               editButton.value='Edit'
-//               childEle.appendChild(editButton)
-//               editButton.onclick = () =>{
-//                   localStorage.removeItem(myobject.email)
-//                   parentEle.removeChild(childEle)
-//                   document.querySelector('#name').value=myobject.username
-//                   document.querySelector('#email').value=myobject.email
-//                   document.querySelector('#Phonenum').value=myobject.phone
-//                   }
-// }
