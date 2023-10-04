@@ -11,12 +11,9 @@ function onSubmit(e) {
       phone
     };
     axios
-    .post('https://crudcrud.com/api/5c8c473be6ec462ab320e6c8d4f798c6/appointmentdata',myobject)
+    .post('https://crudcrud.com/api/9901bca7eda244eeb2a3a29f3fb3c817/appointmentdata',myobject)
     .then((response)=>{
-      const parentEle=document.querySelector('.items');
-      const childEle=document.createElement('li');
-      childEle.textContent='\u2022 '+ response.data.username + '-' + response.data.email + '-' +response.data.phone;
-      parentEle.appendChild(childEle);
+      showUserDetails(response.data)
     })
     .catch(err=>{
       document.body.innerHTML=document.body.innerHTML + "<h4 style='text-align: center;'> Something went wrong </h4>"
@@ -25,14 +22,10 @@ function onSubmit(e) {
   }
 
 window.addEventListener("DOMContentLoaded",()=>{
-        axios.get("https://crudcrud.com/api/5c8c473be6ec462ab320e6c8d4f798c6/appointmentdata")
+        axios.get("https://crudcrud.com/api/9901bca7eda244eeb2a3a29f3fb3c817/appointmentdata")
               .then((response)=>{
-                    console.log(response);
                     for(var i=0;i<response.data.length;i++){
-                      const parentEle=document.querySelector('.items');
-                      const childEle=document.createElement('li');
-                      childEle.textContent='\u2022 '+ response.data[i].username + '-' + response.data[i].email + '-' +response.data[i].phone;
-                      parentEle.appendChild(childEle);
+                      showUserDetails(response.data[i])
                     }
               })
               .catch((err)=>{
@@ -40,6 +33,31 @@ window.addEventListener("DOMContentLoaded",()=>{
               })
 })
 
+//Display user details
+function showUserDetails(user){
+    const parentEle=document.querySelector('.items');
+    const childEle=`<li id=${user._id}> ${user.username}-${user.email}-${user.phone}
+    <button onclick=deleteUser('${user._id}')>Delete</button>
+    <button onclick=deleteUser('${user._id}')>Edit</button></li>`
+    parentEle.innerHTML= parentEle.innerHTML+childEle;
+}
+
+//Delete user details
+function deleteUser(userid){
+    axios.delete(`https://crudcrud.com/api/9901bca7eda244eeb2a3a29f3fb3c817/appointmentdata/${userid}`)
+    .then(response=>{
+      removeUserFromScreen(userid)
+    })
+    .catch(err=>console.log(err))
+}
+
+function removeUserFromScreen(userid){
+    const parentNode=document.querySelector('.items')
+    const childNodeToBeDeleted=document.getElementById(userid)
+    if(childNodeToBeDeleted){
+      parentNode.removeChild(childNodeToBeDeleted)
+    }
+}
 
 
 
@@ -47,17 +65,6 @@ window.addEventListener("DOMContentLoaded",()=>{
 
 
 
-
-
-//     //Adding delete button and delteting from local storage
-//     const deleteButton=document.createElement('input')
-//               deleteButton.type='button'
-//               deleteButton.value='Delete'
-//               childEle.appendChild(deleteButton)
-//               deleteButton.onclick = () =>{
-//                   localStorage.removeItem(myobject.email)
-//                   parentEle.removeChild(childEle)
-//                 }
 //     //Adding edit button and deleting from local storage
 //     const editButton=document.createElement('input')
 //               editButton.type='button'
